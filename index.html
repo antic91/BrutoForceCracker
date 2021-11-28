@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            display: inline-block;
+            width: 300px;
+            padding: 15px 5px;
+        }
+        button{
+            padding: 10px 30px;
+            background-color: red;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <input placeholder="Add Password" type="text" name="" id="input">
+    <button onclick="checkPass()">Check password</button>
+
+    <script>
+
+        var passToCheck;
+        var arrayChars = [];
+
+        var min = 33;
+        var max = 127;
+        var check;
+
+        function checkPass(){
+            passToCheck = document.getElementById("input").value;
+            check = true;
+            arrayChars = [];
+            while(check){
+                arrayChars.push(String.fromCharCode(min));
+                //arrayCharacters.site-1 so we can get length two in array in java to use arrayList.set/////
+                for(var i = 0; i<arrayChars.length-1; i++){
+                    console.log(i);
+                    console.log(arrayChars)
+                    for(var j = min; j<max;j++){
+                        if(!check) break;
+                        arrayChars[i] = String.fromCharCode(j);
+                        
+                        //If password == one Character
+                        if(arrayChars[i] == passToCheck){
+                            console.log("BRAVO!!");
+                            console.log("Password matched: " + passToCheck + " = " + arrayChars[i]);
+                            alert(arrayChars[i])
+                            check = false;
+                            break;
+                        }
+
+                        checkNext(i+1);
+                    }
+                }
+
+            }
+            
+        }
+        
+        function checkNext(index){
+            for(var i = min; i<max; i++){
+                arrayChars[index] =  String.fromCharCode(i);
+                
+                if(arrayChars.join("") == passToCheck){
+                    console.log("BRAVO!!");
+                    console.log("Password matched: " + passToCheck + " = " + arrayChars.join(""));
+                    alert(arrayChars.join(""))
+                    check = false;
+                    break;
+                }
+                
+                if(index < arrayChars.length-1){
+                    checkNext(index+1);
+                    //console.log(index)
+                    //console.log(arrayChars.length)
+                }
+            }
+        }
+
+
+    </script>
+</body>
+</html>
